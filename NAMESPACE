@@ -1,2 +1,2 @@
-export(csv2list, list2xml, msea_ora, msea_sub, pathway_class, pca_scaled, read_pathway, setlabel)
-
+export(csv2list, list2xml, msea_ora, msea_sub, read_pathway, setlabel, pathbank2list, ssea_ora)
+import(loadings)

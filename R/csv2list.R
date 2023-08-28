@@ -2,7 +2,7 @@ csv2list <-
 function (filepath) {
 
 # read csv file
-x <- read.csv(filepath)
+x <- utils::read.csv(filepath)
 
 metabolite_set <- unique(x[,1])
 

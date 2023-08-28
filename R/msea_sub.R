@@ -11,7 +11,7 @@ X <- as.matrix(D[,2:ncol(D)])# data matrix
 #error process
 # ---------------------------
 X[is.na(X)] <- 0 # impute 0
-index <- sd(t(X))!=0 # checking
+index <- stats::sd(t(X))!=0 # checking
 
 X <- X[index,]
 M_ID <- M_ID[index]
@@ -47,7 +47,7 @@ ESMAT <- NaN
 
 ro <- NaN
 for (i in 1:nrow(X)){
-        R <- cor.test(X[i,],y)
+        R <- stats::cor.test(X[i,],y)
 ro[i] <- R$estimate
 }
         

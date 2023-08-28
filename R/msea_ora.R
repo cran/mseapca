@@ -52,7 +52,7 @@ tab <- t(matrix(c(a1,a2,a3,a4),2));
 # ----------------------------------
 # Fisher's exact test
 # ----------------------------------
-resfish <- fisher.test(tab, alternative="greater")
+resfish <- stats::fisher.test(tab, alternative="greater")
 P[i] <- resfish$p.value
 
 }
@@ -60,7 +60,7 @@ P[i] <- resfish$p.value
 # -----------------------
 #q-value
 # -----------------------
-Q <- p.adjust(P, method="BH")
+Q <- stats::p.adjust(P, method="BH")
 
 # --------------------------------------------------------
 #significant metabolites for metabolite set

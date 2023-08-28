@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{MSEA by over representation analysis}
 \description{
-This function performs metabolite set enrichment analysis by over representation analysis (ORA). 
+This function performs metabolite set enrichment analysis by over representation analysis (ORA).
 Statistical hypothesis test of cross tabulation is performed by one-sided Fisher's exact test.
 }
 \usage{
@@ -12,13 +12,13 @@ msea_ora(SIG, ALL, M)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{SIG}{
-Metabolite IDs of significant metabolites
+Metabolite names of significant metabolites
 }
   \item{ALL}{
-Metabolite IDs of all detected metabolites
+Metabolite names of all detected metabolites
 }
   \item{M}{
-list of metabolite set name and metabolite IDs
+list of metabolite set name and metabolite name
 }
 }
 \value{
@@ -33,27 +33,58 @@ Genomics. 2003 Feb;81(2):98-104.
 Hiroyuki Yamamoto
 }
 \examples{
-	# -----------------------
-	#  load metabolite set
-	# -----------------------
-	# filename <- "C:/pathway.xml"
-	# M <- read_pathway(filename) 		# load metabolite set list
-	
-	# ----------------------
-	#  Set metabolite IDs
-	# ----------------------
-	## p : dataframe of metabolite IDs and p-value of factor loadings in PCA
-	## fl : dataframe of metabolite IDs and factor loadings in PCA
+## Example1 : Metabolome data
+data(fasting)
+data(pathway)
 
-	# ALL <- p[,1]				# All metabolite IDs
-	# SIG <- p[p[,2] < 0.05 & fl[,2]<0,1] 
-            ## negatively significant metabolites selected by factor loading
+# pca and pca loading
+pca <- prcomp(fasting$X, scale=TRUE)
+pca <- pca_loading(pca)
 
-	# ---------------
-	#  MSEA by ORA
-	# ---------------
-	# B <- msea_ora (SIG, ALL, M)
+# all detected metabolites
+metabolites <- colnames(fasting$X)
+
+# statistically significant negatively correlated metabolites in PC1 loading
+SIG <- metabolites[pca$loading$R[,1] < 0 & pca$loading$p.value[,1] < 0.05]
+ALL <- metabolites #all detected metabolites
+
+# metabolite set list
+M <- pathway$fasting
+
+# MSEA by over representation analysis
+B <- msea_ora(SIG, ALL, M)
+B$`Result of MSEA(ORA)`
+
+## Example2 : Proteome data
+data(covid19)
+data(pathway)
+
+X <- covid19$X$proteomics
+Y <- covid19$Y
+D <- covid19$D
+tau <- covid19$tau
+
+protein_name <- colnames(X)
+
+# pls-rog and pls-rog loading
+plsrog <- pls_rog(X,Y,D)
+plsrog <- plsrog_loading(plsrog)
+
+# statistically significant proteins
+index_prot <- which(plsrog$loading$R[,1]>0 & plsrog$loading$p.value[,1]<0.05)
+sig_prot <- protein_name[index_prot]
+
+# detected proteins
+protein_name <- colnames(X)
+
+# protein set list
+M <- pathway$covid19$proteomics
+
+# MSEA by over representation analysis
+B <- msea_ora(sig_prot, protein_name, M)
+B$`Result of MSEA(ORA)`
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ pca/msea }
+\keyword{ htest }
