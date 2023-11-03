@@ -1,4 +1,4 @@
-msea_ora <-
+﻿msea_ora <-
 function (SIG, ALL, M){
 
 ALL <- as.character(as.matrix(ALL))
@@ -40,7 +40,7 @@ P<-NaN;
 for (i in 1:sum(l)){
 
 # ------------------------------------
-#Generating 2�~2 table
+#Generating 2×2 table
 # -------------------------------------
 a1 <- sum(Lsig[,i])# significant and including pathway
 a2 <- sum(Lall[,i])-sum(Lsig[,i])# not significant and including pathway
@@ -52,7 +52,7 @@ tab <- t(matrix(c(a1,a2,a3,a4),2));
 # ----------------------------------
 # Fisher's exact test
 # ----------------------------------
-resfish <- stats::fisher.test(tab, alternative="greater")
+resfish <- fisher.test(tab, alternative="greater")
 P[i] <- resfish$p.value
 
 }
@@ -60,7 +60,7 @@ P[i] <- resfish$p.value
 # -----------------------
 #q-value
 # -----------------------
-Q <- stats::p.adjust(P, method="BH")
+Q <- p.adjust(P, method="BH")
 
 # --------------------------------------------------------
 #significant metabolites for metabolite set

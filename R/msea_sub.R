@@ -1,4 +1,4 @@
-msea_sub <-
+﻿msea_sub <-
 function (M, D, y, maxiter=1000){
 
 # ---------------------
@@ -11,7 +11,7 @@ X <- as.matrix(D[,2:ncol(D)])# data matrix
 #error process
 # ---------------------------
 X[is.na(X)] <- 0 # impute 0
-index <- stats::sd(t(X))!=0 # checking
+index <- sd(t(X))!=0 # checking
 
 X <- X[index,]
 M_ID <- M_ID[index]
@@ -19,7 +19,7 @@ M_ID <- M_ID[index]
 S_name <- names(M) # metabolite set name
 
 # -----------------------------------------------------
-#Generating [set�~metabolite ID] matrix L
+#Generating [set×metabolite ID] matrix L
 # -----------------------------------------------------
 L <- setlabel(M_ID,M)
 
@@ -47,7 +47,7 @@ ESMAT <- NaN
 
 ro <- NaN
 for (i in 1:nrow(X)){
-        R <- stats::cor.test(X[i,],y)
+        R <- cor.test(X[i,],y)
 ro[i] <- R$estimate
 }
         

@@ -1,4 +1,4 @@
-read_pathway <-
+﻿read_pathway <-
 function (fullpath) {
 
 # read XML file
