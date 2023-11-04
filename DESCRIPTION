@@ -1,7 +1,7 @@
 Package: mseapca
 Type: Package
 Title: Metabolite Set Enrichment Analysis for Loadings
-Version: 2.0.2
+Version: 2.0.3
 Date: 2023-11-5
 Author: Hiroyuki Yamamoto
 Maintainer: Hiroyuki Yamamoto <h.yama2396@gmail.com>
@@ -12,6 +12,6 @@ LazyData: true
 Imports: XML
 Depends: loadings
 NeedsCompilation: no
-Packaged: 2023-11-03 10:13:05 UTC; hyama
+Packaged: 2023-11-04 10:42:29 UTC; hyama
 Repository: CRAN
-Date/Publication: 2023-11-03 16:20:05 UTC
+Date/Publication: 2023-11-04 11:20:02 UTC

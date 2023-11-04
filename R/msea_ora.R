@@ -1,4 +1,4 @@
-﻿msea_ora <-
+msea_ora <-
 function (SIG, ALL, M){
 
 ALL <- as.character(as.matrix(ALL))
